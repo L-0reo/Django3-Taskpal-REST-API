@@ -70,7 +70,7 @@ def currenttodos(request):
 
 @login_required #deocrator to only allow function if logged in
 def completedtodos(request):
-    todos = Todo.objects.filter(user=request.user, datecompleted__isnull=False).order_by('-datecompleted') #order by datecompleted, the '-' means show recent first
+    todos = Todo.objects.filter(user=request.user, datecompleted__isnull=False).order_by('-datecompleted') #order by -datecompleted, the '-' means show recent first
     return render(request, 'todo/completedtodos.html', {'todos':todos})
 
 @login_required #deocrator to only allow function if logged in

@@ -20,7 +20,10 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '7v48_ardg)x6@c=wh(40j&m)j)c4i3g3iz@b_n(=wt4h0xisw-'
+
+SECRET_KEY = os.getenv('SECRET_KEY')
+if not SECRET_KEY:
+    SECRET_KEY = os.environ.get('SECRET_KEY_TASKPAL')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -122,3 +125,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 LOGIN_URL = '/login'  #the login_required decorator will automatically try and redirect functions that require login and it will look for this '/login' url
+
+try:
+    from .local_settings import *
+except ImportError:
+    print('looks like no local file, you must be on production')
