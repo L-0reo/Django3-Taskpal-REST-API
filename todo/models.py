@@ -8,7 +8,7 @@ class Todo(models.Model):
     created = models.DateTimeField(auto_now_add=True) #it will automatically log creation time - it is not editable
     datecompleted = models.DateTimeField(null=True, blank=True) #if this is set then todo is completed
     important = models.BooleanField(default=False)
-    #to connect a specific user id to the to do
+    #to connect a specific user id to the todo
     user = models.ForeignKey(User, on_delete=models.CASCADE) #to connect todo to a specific user
 
     def __str__(self): #to see todo title in admin list
