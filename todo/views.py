@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.models import User #first used in signupuser()
+from django.contrib.auth.models import User 
 from django.db import IntegrityError
 #to actually log in a user once they enter username and password correctly:
 from django.contrib.auth import login, logout, authenticate

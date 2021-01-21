@@ -26,7 +26,7 @@ if not SECRET_KEY:
     SECRET_KEY = os.environ.get('SECRET_KEY_TASKPAL')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['taskpal.pythonanywhere.com']
 
@@ -43,7 +43,16 @@ INSTALLED_APPS = [
     'todo',
     'api',
     'rest_framework',
+    'rest_framework.authtoken',
 ]
+
+REST_FRAMEWORK = {   #making token authentication the default for the API
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication', #so if you're logged in in that session you have access via API as well
+    ]
+
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
